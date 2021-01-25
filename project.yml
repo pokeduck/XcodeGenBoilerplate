@@ -20,34 +20,25 @@ options:
   deploymentTarget:
     iOS: 12.0
   xcodeVersion: 12.3
-  #findCarthageFrameworks: false
+  # findCarthageFrameworks: true
   #carthageBuildPath: ../FrameworksA/
-  #carthageExecutablePath: mint run Carthage/Carthage
-  #carthageBuildPath: Frameworks
+  # carthageExecutablePath: ./carthage.sh
+  # carthageBuildPath: ./Carthage/Build
 
 targets:
   XCGenDemo:
-    #info:
-    #  path: xcgendemo/misc/info.plist
+    dependencies:
+      - carthage: RxSwift
+      - carthage: RxRelay
+      - carthage: RxBlocking
+      - carthage: RxCocoa
+      - carthage: Kingfisher
+    # info: # 會產生新的並且會覆蓋原有的 info.plist
+    #   path: xcgendemo/misc/info.plist
     type: application
     platform: iOS
     deploymentTarget: "12.0"
-    #dependencies:
-    #- carthage: RxSwift
-    #CARTHAGE_BUILD_PATH: Frameworks
-    # - framework: Frameworks/RxSwift.framework
-    # - framework: Frameworks/RxCocoa.framework
-    # - framework: Frameworks/RxBlocking.framework
-    # - framework: Frameworks/RxRelay.framework
-    # - framework: Frameworks/RxTest.framework
-    # - framework: Frameworks/Differentiator.framework
-    # - framework: Frameworks/RxDataSources.framework
-    # - framework: Frameworks/SnapKit.framework
 
-    #configFiles:
-    #  DEBUG: PracticeUI/configs/debug.xcconfig
-    # STAGING: PracticeUI/configs/staging.xcconfig
-    #  RELEASE: PracticeUI/configs/release.xcconfig
     preBuildScripts:
       - script: swiftformat .
     settings:
