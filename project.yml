@@ -57,3 +57,30 @@ targets:
           CUSTOM_BUILD_SETTING: release.idv.pokeduck
     sources:
       - path: xcgendemo
+      # - path: XCGenDemoTests
+    scheme:
+      testTargets:
+        - XCGenDemoTest
+      gatherCoverageData: false
+
+  XCGenDemoTest:
+    source:
+      - path: XCGenDemoTests
+    settings:
+      base:
+        INFOPLIST_FILE: "XCGenDemoTest/info.plist"
+        PRODUCT_BUNDLE_IDENTIFIER: test.idv.pokeduck
+        PRODUCT_NAME: XCGenDemo
+
+    # settings:
+    #   TEST_HOST: XCGenDemo
+    options:
+      createIntermediateGroups: false
+    dependencies:
+      - target: XCGenDemo
+      - carthage: RxTest
+    type: bundle.unit-test
+    platform: iOS
+    # deploymentTarget: "12.0"
+    preBuildScripts:
+      - script: swiftformat .
