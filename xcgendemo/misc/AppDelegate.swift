@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    @available(iOS 13.0, *)
-    func application(_: UIApplication, didDiscardSceneSessions _: Set<UISceneSession>) {}
-
-    @available(iOS 13.0, *)
-    func application(_: UIApplication, configurationForConnecting _: UISceneSession, options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        return .init()
-    }
+//    @available(iOS 13.0, *)
+//    func application(_: UIApplication, didDiscardSceneSessions _: Set<UISceneSession>) {}
+//
+//    @available(iOS 13.0, *)
+//    func application(_: UIApplication, configurationForConnecting _: UISceneSession, options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
+//        return .init()
+//    }
 }
