@@ -20,7 +20,7 @@ xcodegen 與 xcconfig 相關設定練習，解決合併時專案檔發生衝突�
 https://github.com/Carthage/Carthage/issues/3019#issuecomment-665136323
 
 執行：
-``./carthage.sh update --platform iOS
+``./carthage.sh update --platform iOS``
 
 # XcodeGen
 
