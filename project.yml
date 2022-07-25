@@ -1,86 +1,107 @@
-name: xcgendemo
+name: XcodeGenSample
+schemes:
+  XcodeGenSample-STAGING:
+    build:
+      targets:
+        XcodeGenSample: all
+    run:
+      config: DEV
+    archive:
+      config: STAGING
+  XcodeGenSample-PROD:
+    build:
+      targets:
+        XcodeGenSample: all
+    run:
+      config: DEV
+    archive:
+      config: PROD
 configs:
-  DEBUG: debug
-  STAGING: release
-  RELEASE: release
+  DEV: debug
+  STAGING: debug
+  PROD: release
 configFiles:
-  DEBUG: xcgendemo/configs/debug.xcconfig
-  STAGING: xcgendemo/configs/staging.xcconfig
-  RELEASE: xcgendemo/configs/release.xcconfig
+  DEV: XcodeGenSample/Config/dev.xcconfig
+  STAGING: XcodeGenSample/Config/dev.xcconfig
+  PROD: XcodeGenSample/Config/dev.xcconfig
 settings:
   CODE_SIGN_STYLE: Manual
-  # CODE_SIGN_IDENTITY: sign.identity
-  DEVELOPMENT_TEAM: dev.team
-  FRAMEWORK_SEARCH_PATHS: Frameworks/
-  #CODE_SIGN_ENTITLEMENTS:
-  #FRAMEWORK_SEARCH_PATHS: Frameworks
+  ENABLE_BITCODE: false
+
 options:
   createIntermediateGroups: true
-  #bundleIdPrefix: tw.idv.pokeduck
   deploymentTarget:
-    iOS: 12.0
-  xcodeVersion: 12.3
-  # findCarthageFrameworks: true
-  #carthageBuildPath: ../FrameworksA/
-  # carthageExecutablePath: ./carthage.sh
-  # carthageBuildPath: ./Carthage/Build
+    iOS: 11.0
+  xcodeVersion: 14.0
 
 targets:
-  XCGenDemo:
-    dependencies:
-      - carthage: RxSwift
-      - carthage: RxRelay
-      - carthage: RxBlocking
-      - carthage: RxCocoa
-      - carthage: Kingfisher
-    # info: # 會產生新的並且會覆蓋原有的 info.plist
-    #   path: xcgendemo/misc/info.plist
+  XcodeGenSample:
+    info:
+      path: XcodeGenSample/Config/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: zh-hant
+        UIUserInterfaceStyle: Light
+        CFBundleDisplayName: $(CFG_APP_NAME)
+        CFBundleShortVersionString: $(CFG_APP_VERSION)
+        CFBundleVersion: $(CFG_APP_BUILD)
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
+        NSCameraUsageDescription: 請給相機
+        NSPhotoLibraryAddUsageDescription: 存相簿
+        NSPhotoLibraryUsageDescription: 請給相簿
+        NSLocationWhenInUseUsageDescription: 請給位置3Q
+        NSMicrophoneUsageDescription: 請給麥克風
+        NSSpeechRecognitionUsageDescription: 請支援語音辨識
+        CfgMode: $(CFG_MODE)
+        ITSAppUsesNonExemptEncryption: false
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UIBackgroundModes: [location, remote-notification]
+        NSAppTransportSecurity:
+          NSExceptionDomains:
+            leezen.stg.begonia-design.com.tw:
+              NSExceptionAllowsInsecureHTTPLoads: true
+              NSIncludesSubdomains: true
     type: application
     platform: iOS
-    deploymentTarget: "12.0"
+    deploymentTarget: "11.0"
 
     preBuildScripts:
-      - script: swiftformat .
+      - path: "/bin/sh"
+        script: '"$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/R.generated.swift"'
+        name: Generate R.swift
+        basedOnDependencyAnalysis: false
+        outputFiles:
+          - $SRCROOT/R.generated.swift
+
     settings:
       base:
-        PRODUCT_NAME: XCGenDemo
-        CODE_SIGN_IDENTITY: ${CUSTOM_BUILD_SETTING}
-        PRODUCT_BUNDLE_IDENTIFIER: ${CUSTOM_BUILD_SETTING}
+        INFOPLIST_FILE: XcodeGenSample/Config/Info.plist
+        PRODUCT_NAME: XcodeGenSample
+        TARGETED_DEVICE_FAMILY: [1, 2] #1 is iPhone, 2 is iPad
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        SWIFT_OBJC_BRIDGING_HEADER: xcgendemo/misc/XCGenDemo-Bridging-Header.h
+        SWIFT_OBJC_BRIDGING_HEADER: XcodeGenSample/Resources/XcodeGenSample-Bridging-Header.h
       configs:
-        DEBUG:
-          CUSTOM_BUILD_SETTING: debug.idv.pokeduck
+        DEV:
+          CODE_SIGN_IDENTITY: "Apple Development: Your Cert Name(YOUR_TEAM_ID)"
+          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Dev.entitlements
+          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
+          PROVISIONING_PROFILE_SPECIFIER: your_provisioning_profile_name
+          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
         STAGING:
-          CUSTOM_BUILD_SETTING: staging.idv.pokeduck
-        RELEASE:
-          CUSTOM_BUILD_SETTING: release.idv.pokeduck
+          CODE_SIGN_IDENTITY: "Apple Distribution: YOUR_CERT_NAME (YOUR_TEAM_ID)"
+          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Staging.entitlements
+          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
+          PROVISIONING_PROFILE_SPECIFIER: your_staging_provisioning_profile_name
+          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
+        PROD:
+          CODE_SIGN_IDENTITY: "Apple Distribution: YOUR_CERT_NAME (YOUR_TEAM_ID)"
+          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Prod.entitlements
+          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
+          PROVISIONING_PROFILE_SPECIFIER: your_prod_provisioning_profile_name
+          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
     sources:
-      - path: xcgendemo
-      # - path: XCGenDemoTests
-    scheme:
-      testTargets:
-        - XCGenDemoTest
-      gatherCoverageData: false
-
-  XCGenDemoTest:
-    source:
-      - path: XCGenDemoTests
-    settings:
-      base:
-        INFOPLIST_FILE: "XCGenDemoTest/info.plist"
-        PRODUCT_BUNDLE_IDENTIFIER: test.idv.pokeduck
-        PRODUCT_NAME: XCGenDemo
-
-    # settings:
-    #   TEST_HOST: XCGenDemo
-    options:
-      createIntermediateGroups: false
-    dependencies:
-      - target: XCGenDemo
-      - carthage: RxTest
-    type: bundle.unit-test
-    platform: iOS
-    # deploymentTarget: "12.0"
-    preBuildScripts:
-      - script: swiftformat .
+      - path: XcodeGenSample
+        name: XcodeGenSample
+        type: group
+      - path: ./R.generated.swift

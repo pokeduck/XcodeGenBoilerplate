@@ -1,0 +1,5 @@
+CFG_APP_NAME = XcodeGenSampleStaging
+CFG_APP_VERSION = 1.1.1
+CFG_APP_BUILD = 1 // build
+CFG_APP_BUNDLE_ID = bundle.id.xcode.gen.sample.01
+CFG_MODE = staging
