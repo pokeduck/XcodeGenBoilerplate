@@ -1,29 +1,31 @@
 name: XcodeGenSample
 schemes:
-  XcodeGenSample-STAGING:
+  XcodeGenSample-UAT:
     build:
       targets:
         XcodeGenSample: all
     run:
-      config: DEV
+      config: UAT-Debug
     archive:
-      config: STAGING
+      config: UAT-Release
   XcodeGenSample-PROD:
     build:
       targets:
         XcodeGenSample: all
     run:
-      config: DEV
+      config: PROD-Debug
     archive:
-      config: PROD
+      config: PROD-Release
 configs:
-  DEV: debug
-  STAGING: debug
-  PROD: release
+  UAT-Debug: debug
+  UAT-Release: release
+  PROD-Debug: debug
+  PROD-Release: release
 configFiles:
-  DEV: XcodeGenSample/Config/dev.xcconfig
-  STAGING: XcodeGenSample/Config/dev.xcconfig
-  PROD: XcodeGenSample/Config/dev.xcconfig
+  UAT-Debug: XcodeGenSample/Config/UAT-Debug.xcconfig
+  UAT-Release: XcodeGenSample/Config/UAT-Release.xcconfig
+  PROD-Debug: XcodeGenSample/Config/PROD-Debug.xcconfig
+  PROD-Release: XcodeGenSample/Config/PROD-Release.xcconfig
 settings:
   CODE_SIGN_STYLE: Manual
   ENABLE_BITCODE: false
@@ -31,7 +33,7 @@ settings:
 options:
   createIntermediateGroups: true
   deploymentTarget:
-    iOS: 11.0
+    iOS: 12.0
   xcodeVersion: 14.0
 
 targets:
@@ -46,11 +48,11 @@ targets:
         CFBundleVersion: $(CFG_APP_BUILD)
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UILaunchStoryboardName: LaunchScreen
-        NSCameraUsageDescription: 請給相機
-        NSPhotoLibraryAddUsageDescription: 存相簿
-        NSPhotoLibraryUsageDescription: 請給相簿
-        NSLocationWhenInUseUsageDescription: 請給位置3Q
-        NSMicrophoneUsageDescription: 請給麥克風
+        NSCameraUsageDescription: 請支援相機
+        NSPhotoLibraryAddUsageDescription: 請支援麥克風新增相簿
+        NSPhotoLibraryUsageDescription: 請支援讀取相簿
+        NSLocationWhenInUseUsageDescription: 請支援GPS
+        NSMicrophoneUsageDescription: 請支援麥克風
         NSSpeechRecognitionUsageDescription: 請支援語音辨識
         CfgMode: $(CFG_MODE)
         ITSAppUsesNonExemptEncryption: false
@@ -59,12 +61,12 @@ targets:
         UIBackgroundModes: [location, remote-notification]
         NSAppTransportSecurity:
           NSExceptionDomains:
-            leezen.stg.begonia-design.com.tw:
+            your-app-ats.exception.domain.com.tw:
               NSExceptionAllowsInsecureHTTPLoads: true
               NSIncludesSubdomains: true
     type: application
     platform: iOS
-    deploymentTarget: "11.0"
+    deploymentTarget: "12.0"
 
     preBuildScripts:
       - path: "/bin/sh"
@@ -81,25 +83,11 @@ targets:
         TARGETED_DEVICE_FAMILY: [1, 2] #1 is iPhone, 2 is iPad
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         SWIFT_OBJC_BRIDGING_HEADER: XcodeGenSample/Resources/XcodeGenSample-Bridging-Header.h
-      configs:
-        DEV:
-          CODE_SIGN_IDENTITY: "Apple Development: Your Cert Name(YOUR_TEAM_ID)"
-          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Dev.entitlements
-          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
-          PROVISIONING_PROFILE_SPECIFIER: your_provisioning_profile_name
-          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
-        STAGING:
-          CODE_SIGN_IDENTITY: "Apple Distribution: YOUR_CERT_NAME (YOUR_TEAM_ID)"
-          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Staging.entitlements
-          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
-          PROVISIONING_PROFILE_SPECIFIER: your_staging_provisioning_profile_name
-          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
-        PROD:
-          CODE_SIGN_IDENTITY: "Apple Distribution: YOUR_CERT_NAME (YOUR_TEAM_ID)"
-          CODE_SIGN_ENTITLEMENTS: XcodeGenSample/Config/XcodeGenSample-Prod.entitlements
-          PRODUCT_BUNDLE_IDENTIFIER: bundle.id.xcode.gen.sample.01
-          PROVISIONING_PROFILE_SPECIFIER: your_prod_provisioning_profile_name
-          DEVELOPMENT_TEAM: YOUR_DEV_TEAM_ID
+        CODE_SIGN_IDENTITY: $(CFG_CODE_SIGN_IDENTITY)
+        CODE_SIGN_ENTITLEMENTS: $(CFG_CODE_SIGN_ENTITLEMENTS)
+        PRODUCT_BUNDLE_IDENTIFIER: $(CFG_PRODUCT_BUNDLE_IDENTIFIER)
+        PROVISIONING_PROFILE_SPECIFIER: $(CFG_PROVISIONING_PROFILE_SPECIFIER)
+        DEVELOPMENT_TEAM: $(CFG_DEVELOPMENT_TEAM)
     sources:
       - path: XcodeGenSample
         name: XcodeGenSample

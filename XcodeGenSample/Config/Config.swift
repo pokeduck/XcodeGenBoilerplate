@@ -8,14 +8,29 @@
 import Foundation
 
 struct Config {
-
     enum Mode: String {
-        case dev = "dev"
-        case staging = "staging"
-        case prod = "prod"
+        case uatDebug = "uat-debug"
+        case uatRelease = "uat-release"
+        case prodDebug = "prod-dev"
+        case prodRelease = "prod-release"
         case unknown = ""
         init(string: String) {
             self = Mode(rawValue: string) ?? .unknown
+        }
+
+        var configName: String {
+            switch self {
+            case .uatDebug:
+                return "UAT-Debug"
+            case .uatRelease:
+                return "UAT-Release"
+            case .prodDebug:
+                return "PROD-Debug"
+            case .prodRelease:
+                return "PROD-Release"
+            case .unknown:
+                return "Unknown"
+            }
         }
     }
 

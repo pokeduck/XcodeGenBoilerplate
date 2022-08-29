@@ -5,17 +5,19 @@
 //  Created by 伯爵奶茶全糖去冰 on 2021/1/22.
 //
 
-
 import UIKit
 
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 100))
-        label.text = "Config File:\(Config.App.mode)"
+        let label = UILabel()
+        label.text = "Config File : \(Config.App.mode.configName)"
         view.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         view.backgroundColor = .white
-        let presentButton = UIButton.init(type: .system)
+        let presentButton = UIButton(type: .system)
         presentButton.setTitle("Present Objc VC", for: [])
         view.addSubview(presentButton)
         presentButton.translatesAutoresizingMaskIntoConstraints = false
@@ -27,8 +29,8 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
     @objc func tapButton() {
-        present(ViewControllerObjc.init(), animated: true)
+        present(ViewControllerObjc(), animated: true)
     }
 }

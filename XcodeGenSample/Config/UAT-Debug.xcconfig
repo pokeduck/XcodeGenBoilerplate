@@ -1,0 +1,10 @@
+CFG_APP_NAME = XCGenUAT
+CFG_APP_VERSION = 1.1.1
+CFG_APP_BUILD = 1 // build
+CFG_APP_BUNDLE_ID = bundle.id.xcode.gen.sample.uat.dev.01
+CFG_MODE = uat-dev
+CFG_CODE_SIGN_IDENTITY = "Apple Distribution: YOUR_CERT_NAME (YOUR_TEAM_ID)"
+CFG_CODE_SIGN_ENTITLEMENTS = XcodeGenSample/Config/XcodeGenSample-UAT-Debug.entitlements
+CFG_PRODUCT_BUNDLE_IDENTIFIER = bundle.id.xcode.gen.sample.uat.dev.01
+CFG_PROVISIONING_PROFILE_SPECIFIER = your_uat_debug_provisioning_profile_name
+CFG_DEVELOPMENT_TEAM = YOUR_DEV_TEAM_ID
