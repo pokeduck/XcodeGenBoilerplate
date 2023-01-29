@@ -29,6 +29,3 @@ install:
 
 brew:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-test:
-	zsh ./after-node-install.sh
