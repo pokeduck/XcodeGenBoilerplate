@@ -1,6 +1,6 @@
 # XcodeGenSample
 
-XcodeGen的範例專案，用以解決 xcodeproj 衝突狀況，當git 衝突發生時，執行 `sh makeproject.sh` 以重新產生 xcodeproj 與 xcworkspace 檔案。
+XcodeGen的範例專案，用以解決 xcodeproj 衝突狀況，當git 衝突發生時，執行 `make gen` 以重新產生 xcodeproj 與 xcworkspace 檔案。
 
 # 安裝工具們
 
@@ -20,7 +20,7 @@ gem install bundler
 ```
 ### 建立 xcworkspace
 ```shell
-./makeproject.sh
+make gen
 ```
 
 ### 輸出後Xcode設定
@@ -31,8 +31,8 @@ gem install bundler
   1. XcodeGenSample-UAT
   2. XcodeGenSample-PROD
 * Configuration
-  * STAG-Debug
-  * STAG-Release
+  * UAT-Debug
+  * UAT-Release
   * PROD-Debug
   * PROD-Release
 
