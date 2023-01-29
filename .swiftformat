@@ -1,2 +1,5 @@
 --swiftversion 5.1
+
+--exclude /Pods
 --disable unusedArguments
+--disable redundantRawValues

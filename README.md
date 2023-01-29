@@ -2,28 +2,17 @@
 
 XcodeGen的範例專案，用以解決 xcodeproj 衝突狀況，當git 衝突發生時，執行 `make gen` 以重新產生 xcodeproj 與 xcworkspace 檔案。
 
-# 安裝工具們
+## 安裝必要的工具
 
-### 安裝必要工具 
 ```shell
-# mint
-brew install mint
-# rbenv
-brew install rbenv
+make install
 ```
-### 安裝 Bundler
-``` shell
-rbenv install 2.7.2
-rbenv local 2.7.2
-rbenv rehash
-gem install bundler
-```
-### 建立 xcworkspace
+## 建立 xcworkspace
 ```shell
 make gen
 ```
 
-### 輸出後Xcode設定
+## 輸出後 Xcode 的設定
 
 * Xcode 版本 : 14
 * iOS 最低版本: 12.0
