@@ -8,3 +8,4 @@ CFG_CODE_SIGN_ENTITLEMENTS = XcodeGenSample/Config/XcodeGenSample-PROD-Release.e
 CFG_PRODUCT_BUNDLE_IDENTIFIER = bundle.id.xcode.gen.sample.prod.release.01
 CFG_PROVISIONING_PROFILE_SPECIFIER = your_prod_release_provisioning_profile_name
 CFG_DEVELOPMENT_TEAM = YOUR_DEV_TEAM_ID
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64

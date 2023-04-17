@@ -21,13 +21,13 @@ struct Config {
         var configName: String {
             switch self {
             case .uatDebug:
-                return "UAT-Debug"
+                return "uat-debug"
             case .uatRelease:
-                return "UAT-Release"
+                return "uat-release"
             case .prodDebug:
-                return "PROD-Debug"
+                return "prod-debug"
             case .prodRelease:
-                return "PROD-Release"
+                return "prod-release"
             case .unknown:
                 return "Unknown"
             }

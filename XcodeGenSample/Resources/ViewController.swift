@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let label = UILabel()
-        label.text = "Config File : \(Config.App.mode.configName)"
+        label.text = "XCConfig File : \(Config.App.mode.configName)"
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
