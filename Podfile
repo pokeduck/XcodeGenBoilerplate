@@ -9,7 +9,6 @@ target 'XcodeGenSample' do
   pod 'Alamofire', '~> 5.0'
   pod 'R.swift', '~> 6.0'
   pod 'LookinServer', :configurations => ['PROD-Debug','UAT-Debug']
-  pod 'Kingfisher', '~> 6.0'
 end
 
 post_install do |pi|

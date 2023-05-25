@@ -11,6 +11,7 @@ list:
 
 gen:
 	mint bootstrap --link
+	zsh ./scripts/create-rswift.sh
 	mint run xcodegen generate
 	bundle install
 	make pi
@@ -39,8 +40,7 @@ install_rbenv:
 	
 
 install_githook:
-#https://github.com/nvm-sh/nvm/issues/1446#issuecomment-527027575
-#node
+# The method of invoking nvm is derived from  https://github.com/nvm-sh/nvm/issues/1446#issuecomment-527027575
 	source $(HOME)/.nvm/nvm.sh;\
 	nvm install v18.16.0;\
 	nvm use v18.16.0;\
@@ -53,9 +53,11 @@ install_githook:
 #Install git hook pre-commit
 	zsh ./scripts/install-pre-commit-hooks.sh
 nvm:
+# The following installation steps are provided directly from the official website at https://github.com/nvm-sh/nvm#installing-and-updating
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 	zsh ./scripts/nvm-after-install.sh
 
 brew:
+# The following installation steps are provided directly from the official website at https://brew.sh/
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 

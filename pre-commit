@@ -1,5 +1,0 @@
-#!/bin/sh
-# pass information which files to be excluded to git-format-stages as --exclude option in .swiftformat config file is not honored by git-format-staged
-export PATH=/usr/local/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
-git-format-staged --formatter "swiftformat stdin --stdinpath '{}'" "*.swift"

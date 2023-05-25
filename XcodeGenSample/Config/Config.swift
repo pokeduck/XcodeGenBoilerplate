@@ -11,7 +11,7 @@ struct Config {
     enum Mode: String {
         case uatDebug = "uat-debug"
         case uatRelease = "uat-release"
-        case prodDebug = "prod-dev"
+        case prodDebug = "prod-debug"
         case prodRelease = "prod-release"
         case unknown = ""
         init(string: String) {

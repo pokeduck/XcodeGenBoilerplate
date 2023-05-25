@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (5.6.1)
-  - Kingfisher (6.3.1)
   - LookinServer (1.0.6)
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
@@ -8,25 +7,22 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.0)
-  - Kingfisher (~> 6.0)
   - LookinServer
   - R.swift (~> 6.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - Kingfisher
     - LookinServer
     - R.swift
     - R.swift.Library
 
 SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   LookinServer: 18155b1e4a08213c236a1dd6b7ca52328a70a1e3
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
 
-PODFILE CHECKSUM: 9fde05a6ee1b244ed4a3ce7ef12d30ff6fe4b8f5
+PODFILE CHECKSUM: f4fc5b13a74f3160e38314f6235a8a8c79a54c4c
 
 COCOAPODS: 1.11.3
