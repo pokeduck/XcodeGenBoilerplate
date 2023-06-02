@@ -15,6 +15,7 @@ gen:
 	mint run xcodegen generate
 	bundle install
 	make pi
+	xcodebuild -workspace XcodeGenSample.xcworkspace -scheme XcodeGenSample-PROD -sdk "iphonesimulator"
 	xed XcodeGenSample.xcworkspace
 
 
