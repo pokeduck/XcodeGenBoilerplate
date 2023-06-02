@@ -27,6 +27,7 @@ make gen
 
 
 ## 參考
+* [Apple Technical Note : Building from the Command Line with Xcode](https://developer.apple.com/library/archive/technotes/tn2339/_index.html)
 * [Apple : Xcode Build Settings](https://developer.apple.com/documentation/xcode/build-settings-reference)
 * [Hokila Jan : XcodeGen 導入教學與心得
 ](https://hokilajan.medium.com/xcodegen-%E5%B0%8E%E5%85%A5%E6%95%99%E5%AD%B8%E8%88%87%E5%BF%83%E5%BE%97-d980098fbb6e)
